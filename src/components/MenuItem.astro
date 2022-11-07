@@ -1,0 +1,29 @@
+---
+const { label, href } = Astro.props
+
+const { pathname } = Astro.url
+
+const liClasses = [
+  {
+    active: pathname === href
+  }
+]
+---
+
+<li class:list={liClasses}>
+  <a href={href}>{label}</a>
+</li>
+
+<style>
+  li {
+    margin: 0 20px;
+  }
+
+  .active {
+    color: yellow;
+  }
+
+  a {
+    color: inherit;
+  }
+</style>

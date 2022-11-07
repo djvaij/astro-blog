@@ -1,0 +1,33 @@
+---
+import MenuItem from '../components/MenuItem.astro'
+
+const menu = [
+  {
+    label: 'Home',
+    href: '/',
+  },
+  {
+    label: 'About',
+    href: '/about',
+  },
+];
+---
+
+<nav>
+  <ul>
+    {menu.map(({label, href}) => (
+      <MenuItem label={label} href={href} />
+    ))}
+  </ul>
+</nav>
+
+<style>
+  nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+</style>
