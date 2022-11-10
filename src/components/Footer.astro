@@ -1,0 +1,39 @@
+---
+import Social from './Social.astro';
+
+// CSS vars
+const darkColor = '#222222';
+const whiteColor = '#eeeeee';
+const colorGreen = 'lightgreen';
+---
+
+<footer>
+  <Social platform="twitter" username="astrodotbuild" />
+  <Social platform="github" username="withastro" />
+  <Social platform="youtube" username="astrodotbuild" />
+</footer>
+
+<style define:vars={{darkColor, whiteColor, colorGreen}}>
+  footer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    max-width: 100vw;
+    width: 100%;
+    padding: 30px 0;
+    background: var(--darkColor);
+    color: var(--whiteColor);
+  }
+
+  a {
+    display: inline-block;
+    margin: 0 10px;
+    transition: filter 0.3s;
+    color: var(--colorGreen);
+  }
+
+  a:hover {
+    filter: brightness(90%);
+  }
+</style>

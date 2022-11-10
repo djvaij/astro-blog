@@ -1,29 +1,47 @@
 ---
 const { label, href } = Astro.props
-
 const { pathname } = Astro.url
+const isForCurrentPage = pathname === href
 
-const liClasses = [
+const classes = [
+  'menu-item',
   {
-    active: pathname === href
+    active: isForCurrentPage
   }
 ]
 ---
 
-<li class:list={liClasses}>
-  <a href={href}>{label}</a>
-</li>
+{isForCurrentPage
+  ? <span class:list={classes}>{label}</span>
+  : <a class:list={classes} href={href}>{label}</a>
+}
 
 <style>
-  li {
-    margin: 0 20px;
+  .menu-item {
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    user-select: none;
   }
 
+  .menu-item:hover, a:focus {
+    background-color: #ff9776;
+    color: #eeeeee;
+  }
+
+  .menu-item {
+    display: inline-block;
+    padding: 15px 20px;
+  }
   .active {
-    color: yellow;
+    color: lightcoral;
   }
 
-  a {
-    color: inherit;
+  .active:hover, .active:focus {
+    color: #cccccc;
   }
 </style>

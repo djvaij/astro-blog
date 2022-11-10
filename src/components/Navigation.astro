@@ -10,24 +10,40 @@ const menu = [
     label: 'About',
     href: '/about',
   },
+  {
+    label: 'Blog',
+    href: '/blog',
+  },
 ];
 ---
 
-<nav>
-  <ul>
-    {menu.map(({label, href}) => (
-      <MenuItem label={label} href={href} />
-    ))}
-  </ul>
-</nav>
+<div class="nav-links">
+  {menu.map(({label, href}) => (
+    <MenuItem label={label} href={href} />
+  ))}
+</div>
 
 <style>
-  nav ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .nav-links {
+    width: 100%;
+    top: 5rem;
+    left: 48px;
+    background-color: #ff9776;
+    display: none;
     margin: 0;
-    padding: 0;
-    list-style: none;
+  }
+  .expanded {
+    display: unset;
+  }
+
+  @media screen and (min-width: 636px) {
+    .nav-links {
+      margin-left: 5em;
+      justify-content: center;
+      display: flex;
+      position: static;
+      width: auto;
+      background: none;
+    }
   }
 </style>
