@@ -1,9 +1,12 @@
+// https://astro.build/config
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
 import preact from "@astrojs/preact";
 
-// https://astro.build/config
+import image from "@astrojs/image";
+
 export default defineConfig({
-  integrations: [preact()]
+  integrations: [preact(), image({
+    serviceEntryPoint: '@astrojs/image/sharp'
+  })]
 });

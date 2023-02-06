@@ -29,19 +29,27 @@ const classes = [
   }
 
   .menu-item:hover, a:focus {
-    background-color: #ff9776;
-    color: #eeeeee;
+    border-radius: 4px;
+    background-color: #dddddd;
+    color: #444444;
+  }
+
+  :global(.dark) .menu-item:hover, a:focus {
+    border-radius: 4px;
+    background-color: #444444;
+    color: lightcoral;
   }
 
   .menu-item {
     display: inline-block;
-    padding: 15px 20px;
+    padding: 10px 20px;
   }
+
   .active {
     color: lightcoral;
   }
 
   .active:hover, .active:focus {
-    color: #cccccc;
+    color: lightcoral;
   }
 </style>

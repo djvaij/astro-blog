@@ -4,13 +4,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = 'About Me';
 
 const identity = {
-  firstName: "Sarah",
-  country: "Canada",
-  occupation: "Technical Writer",
-  hobbies: ["photography", "birdwatching", "baseball"],
+  firstName: "Vasyl",
+  country: "Ukraine",
+  occupation: "Frontend Developer",
+  hobbies: ["Study English", "Programing", "Music"],
 };
 
-const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+const skills = ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Astro"];
 
 const happy = true;
 const finished = true;
@@ -21,38 +21,47 @@ const fontWeight = "bold";
 const textCase = "uppercase";
 ---
 
-<BaseLayout pageTitle={pageTitle}>
-  <h1>About Me</h1>
-  <h2>... and my new Astro site!</h2>
-
-  <p>Here are a few facts about me:</p>
-  <ul>
-    <li>My name is {identity.firstName}.</li>
-    <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
-    {identity.hobbies.length >= 2 && 
-      <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
-    } 
-  </ul>
-  <p>My skills are:</p>
-  <ul>
-    {skills.map((skill) => <li class="skill">{skill}</li>)}
-  </ul>
-
-  {happy && <p>I am happy to be learning Astro!</p>}
-
-  {finished && <p>I finished this tutorial!</p>}
-
-  {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
+<BaseLayout pageTitle={pageTitle} alignCenter>
+  <div class="wrapper">
+    <p>Here are a few facts about me:</p>
+    <ul>
+      <li>My name is {identity.firstName}.</li>
+      <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
+      {identity.hobbies.length >= 2 && 
+        <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
+      } 
+    </ul>
+    <p>My skills are:</p>
+    <ul>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+  
+    {happy && <p>I am happy to be learning Astro!</p>}
+  
+    {finished && <p>I finished this tutorial!</p>}
+  
+    {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
+  </div>
 </BaseLayout>
 
 <style define:vars={{skillColor, fontWeight, textCase}}>
-  h1 {
-    color: purple;
-    font-size: 4rem;
+  .wrapper {
+    width: 100%;
+    max-width: 680px;
+    margin: auto;
+    text-align: left;
+    padding: 10px 20px;
+    background: #444444;
+    border-radius: 4px;
   }
+
   .skill {
     color: var(--skillColor);
     font-weight: var(--fontWeight);
     text-transform: var(--textCase);
+  }
+
+  :global(.dark) .skill {
+    color: lightblue;
   }
 </style>

@@ -1,0 +1,40 @@
+---
+import PostCard from '@/components/PostCard.astro';
+
+const { posts } = Astro.props;
+---
+
+<div class="posts">
+  {posts.map((post) => {
+    const {url, frontmatter} = post;
+    const { title, image, description } = frontmatter;
+
+    return (
+      <PostCard
+        url={url}
+        title={title}
+        image={image}
+        description={description}
+      />
+    );
+  })}
+  <div class="shadow-item"></div>
+  <div class="shadow-item"></div>
+</div>
+
+<style lang="scss">
+  .posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 40px;
+  }
+
+  .shadow-item {
+    display: block;
+    width: 100%;
+    max-width: 426px;
+    height: 0;
+    ouline: 1px solid red;
+  }
+</style>

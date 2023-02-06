@@ -1,5 +1,15 @@
 ---
-const { pageTitle } = Astro.props;
+interface Props {
+	pageTitle: string;
+	alignCenter?: boolean;
+	footerToBottom?: boolean
+}
+
+const {
+	pageTitle,
+	alignCenter = false,
+	footerToBottom = true,
+}: Props = Astro.props;
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -13,13 +23,31 @@ import '../styles/global.css';
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
 	</head>
-	<body>
+	<body class:list={[{ 'footer-to-bottom': footerToBottom }]}>
     <Header />
-    <h1>{pageTitle}</h1>
-		<slot />
+		<main class:list={["layout", { 'align-center': alignCenter }]}>
+			<h1 class="title">{pageTitle}</h1>
+			<slot />
+		</main>
     <Footer />
     <script>
       import '../scripts/menu.js';
     </script>
 	</body>
 </html>
+
+<style>
+	.title {
+		margin-top: 3rem;
+		margin-bottom: 3rem;
+	}
+
+	.footer-to-bottom {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.align-center {
+		text-align: center;
+	}
+</style>

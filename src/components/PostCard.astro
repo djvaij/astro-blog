@@ -1,0 +1,67 @@
+---
+import { IImage } from '../types/IImage';
+import { Image } from '@astrojs/image/components';
+
+interface Props {
+  url: string;
+  title: string;
+  image: IImage;
+  description: string;
+}
+
+const { url, title, image, description } = Astro.props;
+---
+
+<div class="post">
+  <h3 class="title"><a href={url}>{title}</a></h3>
+  <a class="image-wrapper" href={url}>
+    <Image
+      class="image"
+      src={image.url}
+      width={426}
+      height={240}
+      aspectRatio={16/9}
+      alt={image.alt}
+    />
+  </a>
+  <p class="description">
+    {description}
+  </p>
+</div>
+
+<style lang="scss">
+  .post {
+    width: 100%;
+    max-width: 426px;
+  }
+  
+  .title {
+    color: lightcoral;
+    transition: all 0.3s;
+
+    &:hover {
+      color: lightsalmon;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  .image-wrapper {
+    display: block;
+    overflow: hidden;
+  }
+
+  .image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+</style>

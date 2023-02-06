@@ -4,32 +4,62 @@ import BaseLayout from './BaseLayout.astro';
 const { frontmatter } = Astro.props;
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
-  <p>{frontmatter.pubDate.slice(0,10)}</p>
-  <p><em>{frontmatter.description}</em></p>
-
-  <p>Written by {frontmatter.author}</p>
-
-  <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
-
-  <div class="tags">
-    {frontmatter.tags.map((tag) => (
-      <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
-    ))}
+<BaseLayout pageTitle={frontmatter.title} alignCenter>
+  <div class="wrapper">
+    <img class="image" src={frontmatter.image.url} width="400" alt={frontmatter.image.alt} />
+    <p>{frontmatter.pubDate.slice(0,10)}</p>
+    <p><em>{frontmatter.description}</em></p>
+  
+    <p>Written by {frontmatter.author}</p>
+  
+  
+    <div class="tags">
+      {frontmatter.tags.map((tag) => (
+        <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
+      ))}
+    </div>
+  
+    <div class="markdown">
+      <slot />
+    </div>
   </div>
-
-  <slot />
 </BaseLayout>
 
-<style>
-  a {
-    color: #00539F;
+<style lang="scss">
+  .wrapper {
+    text-align: left;
   }
-            
+
+  .markdown {
+    :global(a) {
+      color: lightcoral;
+      transition: all 0.3s;
+    }
+
+    :global(a:hover) {
+      color: lightsalmon;
+    }
+  }
+
+  .image {
+    display: block;
+    float: left;
+    width: 100%;
+    max-width: 50%;
+    margin-right: 40px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    background: #444444;
+  }
+        
   .tags {
     display: flex; 
     flex-wrap: wrap; 
-    margin: 0 auto;  
+    margin: 0 auto;
+
+    a {
+      color: #00539F;
+    }
   }
 
   .tag {
