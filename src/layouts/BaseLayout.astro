@@ -22,17 +22,37 @@ import '../styles/global.css';
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
+		<slot name="head" />
 	</head>
 	<body class:list={[{ 'footer-to-bottom': footerToBottom }]}>
     <Header />
+		<slot name="after-header">
 		<main class:list={["layout", { 'align-center': alignCenter }]}>
 			<h1 class="title">{pageTitle}</h1>
 			<slot />
+			<!-- Slot with fallback -->
+			<!-- <slot>
+				<p>This is my fallback content, if there is no child passed into slot</p>
+			</slot> -->
 		</main>
     <Footer />
-    <script>
+		<slot name="after-footer"/>
+		<!-- relative path to script at `src/scripts/local.js` -->
+		<!-- <script src="../scripts/local.js"></script> -->
+
+		<!-- also works for local TypeScript files -->
+		<!-- <script src="./script-with-types.ts"></script> -->
+
+		<!-- absolute path to a script at `public/my-script.js` -->
+		<!-- <script is:inline src="/my-script.js"></script> -->
+
+		<!-- full URL to a script on a remote server -->
+		<!-- <script is:inline src="https://my-analytics.com/script.js"></script> -->
+
+		<script>
       import '../scripts/menu.js';
     </script>
+		<slot name="before-end-of-body"/>
 	</body>
 </html>
 
